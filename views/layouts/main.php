@@ -1,19 +1,20 @@
 <?php
-    use yii\bootstrap\Nav;
     use yii\bootstrap\NavBar;
+    use yii\bootstrap\Nav;
 ?>
 <?php $this->beginPage(); ?>
+<!DOCTYPE HTML>
 <html>
     <head>
         <title>VideoSchool</title>
         <?php $this->head(); ?>
     </head>
     <body>
-    <?php $this->beginBody() ?> //подключили возможность размещения скриптов jquery
+    <?php $this->beginBody() //подключили возможность размещения скриптов jquery?>
         <?php
 //        передаем параметры в готовую верстку bootstrap-a. получился навбар
             NavBar::begin([
-                    'brandLabel' => 'VideoSchool',
+                'brandLabel' => 'VideoSchool',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                         'class' => 'navbar-default navbar-fixed-top'
@@ -35,4 +36,5 @@
     <?php $this->endBody(); ?>
     </body>
 </html>
+
 <?php $this->endPage(); ?>

@@ -1,4 +1,4 @@
 RewriteEngine on
-RewriteCond %{REQUIRE_FILENAME} !-f 
-RewriteCond %{REQUIRE_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . index.php
