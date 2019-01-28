@@ -10,5 +10,8 @@
                 "bower-asset-library": "vendor/bower"
             }
         }
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.4"
     }
 }
