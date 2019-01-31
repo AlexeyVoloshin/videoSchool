@@ -14,6 +14,7 @@
             'request' => [
                 'cookieValidationKey' => 'secret code'
             ],
+            'db' => require (__DIR__ . '/db.php')
         ],
         'modules' => [
             'debug' => [
