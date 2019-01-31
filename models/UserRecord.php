@@ -14,9 +14,10 @@
 
        public function setTestUser()
        {
-           $this->name = "Alex";
-           $this->email = "alex@mail.ru";
-           $this->passhash = "dfsfsdfdsf23sdgdfg080dfgkjljfdglkjlj";
-           $this->status = 2;
+           $faker = \Faker\Factory::create();
+           $this->name = $faker->name;
+           $this->email = $faker->email;
+           $this->passhash = $faker->password;
+           $this->status = $faker->randomDigit;
        }
    }
