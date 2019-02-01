@@ -1,8 +1,9 @@
 <?php
 namespace app\controllers;
+use app\models\UserIdentity;
 use app\models\UserRecord;
 use yii\web\Controller;
-
+use yii;
 class UserController extends Controller
 {
     public function actionJoin()
@@ -18,6 +19,8 @@ class UserController extends Controller
     }
     public function actionLogin()
     {
+        $uid = UserIdentity::findIdentity(mt_rand(1, 10)); //находим его в БД
+        Yii::$app->user->login($uid); //логиним конкретного пользователя
         return $this->render('login');
     }
 }

@@ -14,7 +14,10 @@
             'request' => [
                 'cookieValidationKey' => 'secret code'
             ],
-            'db' => require (__DIR__ . '/db.php')
+            'db' => require (__DIR__ . '/db.php'),//подключение к БД
+            'user' => [//идентификация пользователя
+                'identityClass' => 'app\models\UserIdentity'
+            ]
         ],
         'modules' => [
             'debug' => [
