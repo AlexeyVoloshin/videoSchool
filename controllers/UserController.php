@@ -20,8 +20,13 @@ class UserController extends Controller
     }
     public function actionLogin()
     {
-        $uid = UserIdentity::findIdentity(mt_rand(1, 10)); //находим пользователя в БД
-        Yii::$app->user->login($uid); //логиним конкретного пользователя
+       // $uid = UserIdentity::findIdentity(mt_rand(1, 10)); //находим пользователя в БД
+       // Yii::$app->user->login($uid); //логиним конкретного пользователя
         return $this->render('login');
+    }
+    public function  actionLogout()
+    {
+        Yii::$app->user->Logout(); //user это абстрактный пользователь Yii который умеет заходить и выходить на сайт
+        return $this->redirect('/'); //возвращаемся на домашнюю страницу(в корень сайта)
     }
 }
