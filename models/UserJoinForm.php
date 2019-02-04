@@ -13,7 +13,6 @@ class UserJoinForm extends Model
 
         public function rules() //выполняет валидацию формы
         {
-
             return [
 
                 ['name', 'required', 'message' => 'Имя пользователя не может быть пустым'],//проверяет поля ввода на наличие введеных данных

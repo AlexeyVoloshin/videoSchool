@@ -25,4 +25,12 @@
            $count = static::find()->where(['email' => $email])->count();//проверяем условие, если количество записей равно 0 то выполним просто return(выход)
            return $count > 0;
        }
+
+       public function setUserJoinForm($userJoinForm)
+       {
+            $this->name = $userJoinForm->name;
+            $this->email = $userJoinForm->email;
+            $this->passhash = $userJoinForm->password;
+            $this->status = 1;
+       }
    }

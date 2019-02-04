@@ -22,12 +22,17 @@ class UserController extends Controller
         $userJoinForm->setUserRecord($userRecord);
         return $this->render('join', compact('userJoinForm')); //передаем объект в контроллер
     }
-    public function actionJoinPost()
+    public function actionJoinPost()//вызывается когда на форму приходят пост данные
     {
         $userJoinForm = new UserJoinForm();
        if($userJoinForm->load(Yii::$app->request->post()));
         if ($userJoinForm->validate())
-            $userJoinForm->name .= "ok";
+        {
+            $userRecord = new UserRecord();
+            $userRecord->setUserJoinForm($userJoinForm);//добавили данные из формы
+            $userRecord->save();//сохранили данные
+            return $this->redirect('/user/login');
+        }
         //$userJoinForm->name .= "."; //для проверки что данные передаються
         //return $this->render('join', compact('userJoinForm'));
         return $this->render('join', ['userJoinForm' => $userJoinForm]);//тоже самое что предыдущая запись
