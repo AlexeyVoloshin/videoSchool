@@ -32,12 +32,11 @@ class UserJoinForm extends Model
         {
             $this->name = $userRecord->name;
             $this->email = $userRecord->email;
-            $this->password = $this->password2 = "qwas";
+            $this->password = $this->password2 = 'qwas';
         }
         public function errorIfEmailUser()//в методе вывели ошибку
         {
             if(UserRecord::existsEmail($this->email))
-                return;
-            $this->addError('email', 'This e-mail alredy exists');
+                $this->addError('email', 'This e-mail already exists');
         }
     }
