@@ -23,7 +23,8 @@ class UserJoinForm extends Model
                 ['name', 'string', 'min' =>3, 'max' =>30, 'message' => 'имя сильно короткое'],//параметр max, min задает диапазон длинны имени
                 ['email', 'email', 'message' => 'Адрес эл. почты указан не верно'], //параметр massage помогает изменить стандартное сообщение
                 ['password', 'string', 'min' => 4],
-                ['password2', 'compare', 'compareAttribute' => 'password']//правило сравнения compare, которое содержит атрибут сравнивания compareAttribute
+                ['password2', 'compare', 'compareAttribute' => 'password'],//правило сравнения compare, которое содержит атрибут сравнивания compareAttribute
+                ['email', 'errorIfEmailUser'] //создали метод который совпадает с этим правилом валидации
             ];
         }
 
@@ -32,5 +33,11 @@ class UserJoinForm extends Model
             $this->name = $userRecord->name;
             $this->email = $userRecord->email;
             $this->password = $this->password2 = "qwas";
+        }
+        public function errorIfEmailUser()//в методе вывели ошибку
+        {
+            if(UserRecord::existsEmail($this->email))
+                return;
+            $this->addError('email', 'This e-mail alredy exists');
         }
     }

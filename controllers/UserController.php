@@ -25,7 +25,9 @@ class UserController extends Controller
     public function actionJoinPost()
     {
         $userJoinForm = new UserJoinForm();
-        $userJoinForm->load(Yii::$app->request->post());
+       if($userJoinForm->load(Yii::$app->request->post()));
+        if ($userJoinForm->validate())
+            $userJoinForm->name .= "ok";
         //$userJoinForm->name .= "."; //для проверки что данные передаються
         //return $this->render('join', compact('userJoinForm'));
         return $this->render('join', ['userJoinForm' => $userJoinForm]);//тоже самое что предыдущая запись

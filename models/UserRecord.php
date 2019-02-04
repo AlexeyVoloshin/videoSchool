@@ -20,4 +20,9 @@
            $this->passhash = $faker->password;
            $this->status = $faker->randomDigit;
        }
+       public static function existsEmail ($email)
+       {
+           $count = static::find()->where(['email' => $email])->count();//проверяем условие, если количество записей равно 0 то выполним просто return(выход)
+           return $count > 0;
+       }
    }
