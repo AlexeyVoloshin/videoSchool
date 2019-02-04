@@ -9,14 +9,26 @@ class UserController extends Controller
 {
     public function actionJoin()
     {
-
 //        $userRecord = new UserRecord();
 //
 //        $userRecord->setTestUser();
 //
 //        $userRecord->save();//вызывает запрос к БД который встроен в фреймворк и запишет данный model в таблицу
+        if(Yii::$app->request->isPost)
+            return $this->actionJoinPost();
         $userJoinForm = new UserJoinForm();//создали объект
-        return $this->render('join', compact('userJoinForm')); //передаем объект в контролер
+        $userRecord = new UserRecord();
+        $userRecord->setTestUser();
+        $userJoinForm->setUserRecord($userRecord);
+        return $this->render('join', compact('userJoinForm')); //передаем объект в контроллер
+    }
+    public function actionJoinPost()
+    {
+        $userJoinForm = new UserJoinForm();
+        $userJoinForm->load(Yii::$app->request->post());
+        //$userJoinForm->name .= "."; //для проверки что данные передаються
+        //return $this->render('join', compact('userJoinForm'));
+        return $this->render('join', ['userJoinForm' => $userJoinForm]);//тоже самое что предыдущая запись
     }
     public function actionLogin()
     {
