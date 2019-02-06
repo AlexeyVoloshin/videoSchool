@@ -22,8 +22,8 @@
             ]);
             if(Yii::$app->user->isGuest)
                 $menu = [
-                    ['label' => 'Join', 'url' => ['/user/join']],
-                    ['label' => 'Login', 'url' => ['/user/login']]
+                    ['label' => 'Join', 'url' => ['/user/join']], //создаем разделы меню(кнопки)
+                    ['label' => 'Login', 'url' => ['/user/login']],
                 ];
             else
                 $menu = [

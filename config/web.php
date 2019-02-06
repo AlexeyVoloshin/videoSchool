@@ -9,7 +9,7 @@
         'components' => [
             'urlManager' => [
                 'enablePrettyUrl' => true, //включить красивые url адреса
-                'showScriptName' => false
+                'showScriptName' => false //убирает из адреса index.php
             ],
             'request' => [
                 'cookieValidationKey' => 'secret code'

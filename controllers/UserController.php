@@ -1,6 +1,7 @@
 <?php
 namespace app\controllers;
 use app\models\UserIdentity;
+use app\models\UserLoginForm;
 use app\models\UserJoinForm;
 use app\models\UserRecord;
 use yii\web\Controller;
@@ -31,7 +32,7 @@ class UserController extends Controller
             $userRecord = new UserRecord();
             $userRecord->setUserJoinForm($userJoinForm);//добавили данные из формы
             $userRecord->save();//сохранили данные
-            return $this->redirect('/user/login');
+            return $this->redirect('/user/welcome');
         }
         //$userJoinForm->name .= "."; //для проверки что данные передаються
         //return $this->render('join', compact('userJoinForm'));
@@ -41,7 +42,12 @@ class UserController extends Controller
     {
        // $uid = UserIdentity::findIdentity(mt_rand(1, 10)); //находим пользователя в БД
        // Yii::$app->user->login($uid); //логиним конкретного пользователя
-        return $this->render('login');
+        $userLoginForm = new UserLoginForm();
+        return $this->render('login', compact('userLoginForm'));
+    }
+    public function actionWelcome()
+    {
+        return $this->render('welcome');
     }
     public function  actionLogout()
     {
