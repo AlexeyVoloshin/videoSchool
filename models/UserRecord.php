@@ -12,6 +12,12 @@
           return "user";  //воозвращаем название таблицы
        }
 
+       public static function findUserByEmail($email)
+       {
+           return static::findOne(['email' => $email]);//найти одну запись
+
+       }
+
        public function setTestUser()
        {
            $faker = \Faker\Factory::create();

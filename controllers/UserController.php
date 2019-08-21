@@ -40,10 +40,23 @@ class UserController extends Controller
     }
     public function actionLogin()
     {
+        if(Yii::$app->request->isPost)//если ПОСТ есть то...
+            return $this->actionLoginPost();//возвращаем результат работы функции
        // $uid = UserIdentity::findIdentity(mt_rand(1, 10)); //находим пользователя в БД
        // Yii::$app->user->login($uid); //логиним конкретного пользователя
         $userLoginForm = new UserLoginForm();
         return $this->render('login', compact('userLoginForm'));
+    }
+    public function actionLoginPost()
+    {
+       $userLoginForm = new UserLoginForm(); //1-загрузьть данные(создаем экземпляр формы)
+        if($userLoginForm->load(Yii::$app->request->post()));//2-загрузить в нее данные и через post загружая через request и метод post
+            if($userLoginForm->validate());//3-запускаем метод валидейт который проверяет пользовательские данные
+            {
+                $userLoginForm->login();//4-далее вызываем метод входа
+                return $this->redirect("/");
+            }
+        return $this->render('join', ['userJoinForm' => $userJoinForm]);
     }
     public function actionWelcome()
     {
